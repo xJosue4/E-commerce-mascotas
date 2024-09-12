@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-// Clase que representa un producto
 class Product {
     private int id;
     private String name;
@@ -32,7 +31,6 @@ class Product {
     }
 }
 
-// Clase que representa un usuario
 class User {
     private String name;
     private Cart cart;
@@ -51,7 +49,6 @@ class User {
     }
 }
 
-// Clase que representa un carrito de compras
 class Cart {
     private List<Product> products;
 
@@ -77,35 +74,34 @@ class Cart {
 
     public void checkout() {
         if (products.isEmpty()) {
-            System.out.println("El carrito está vacío. No hay nada que comprar.");
+            System.out.println("El carrito está vacío");
         } else {
             double total = 0;
-            System.out.println("Procesando compra...");
+            System.out.println("Procesando compra.............");
             for (Product product : products) {
                 total += product.getPrice();
             }
-            System.out.println("Total a pagar: $" + total);
+            System.out.println("Esto es lo que vas a pagar: $" + total);
             products.clear();
-            System.out.println("Compra realizada con éxito.");
+            System.out.println("La compra se realizo con éxito............................");
         }
     }
 }
 
-// Clase principal que gestiona la tienda
 public class ECommerce {
     private List<Product> products = new ArrayList<>();
     private User user;
 
     public ECommerce(User user) {
         this.user = user;
-        // Añadiendo algunos productos al catálogo inicial
-        products.add(new Product(1, "Laptop", 1000.0));
-        products.add(new Product(2, "Teléfono", 500.0));
-        products.add(new Product(3, "Tablet", 300.0));
+        products.add(new Product(1, "Collar para perro", 600));
+        products.add(new Product(2, "Juguete de goma", 100));
+        products.add(new Product(3, "Jabón para perro", 400));
+        products.add(new Product(3, "Denta-sticks", 200));
     }
 
     public void showProducts() {
-        System.out.println("Productos disponibles:");
+        System.out.println("Estos son los productos disponibles:");
         for (Product product : products) {
             System.out.println(product);
         }
@@ -122,15 +118,17 @@ public class ECommerce {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Bienvenido al E-Commerce");
-        System.out.print("Ingrese su nombre: ");
+        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("Bienvenido al E-Commerce Padalustro");
+        System.out.println("Necesitamos su nombre para generar el ticket.");
+        System.out.print("¿Como se llama?: ");
         String userName = scanner.nextLine();
         User user = new User(userName);
         ECommerce store = new ECommerce(user);
 
         while (true) {
             System.out.println("\nMenú:");
-            System.out.println("1. Ver productos");
+            System.out.println("1. Ver productos de mascotas");
             System.out.println("2. Añadir producto al carrito");
             System.out.println("3. Ver carrito");
             System.out.println("4. Realizar compra");
@@ -159,11 +157,11 @@ public class ECommerce {
                     user.getCart().checkout();
                     break;
                 case 5:
-                    System.out.println("Gracias por usar el E-Commerce. ¡Hasta luego!");
+                    System.out.println("Gracias por comprar en E-Commerce Padalustro..........");
                     scanner.close();
                     return;
                 default:
-                    System.out.println("Opción no válida.");
+                    System.out.println("Opción invalida");
                     break;
             }
         }
